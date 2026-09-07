@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Four Meals a Day — Does Eating in Four Beats Beat the Rest?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --cream:#FAF3E7;
+    --ink:#241C14;
+    --ink-soft:#5B5245;
+    --rule: rgba(36,28,20,0.14);
+    --sand:#EFE3CC;
+
+    --morning:#A9691A;
+    --morning-soft:#F3E4CC;
+    --midday:#2F5233;
+    --midday-soft:#E4EDDC;
+    --afternoon:#7C3F5C;
+    --afternoon-soft:#F0E1E9;
+    --evening:#2C3A5E;
+    --evening-soft:#E1E5EF;
+    --maxw:680px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Public Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    color:var(--ink);
+    margin:0;
+  }
+
+  p{margin:0 0 1.1em 0;}
+  p:last-child{margin-bottom:0;}
+  img{max-width:100%; display:block;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+  .wrap-wide{max-width:980px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative; height:min(90vh,680px); min-height:460px; overflow:hidden; background:var(--ink);}
+  .hero img{width:100%; height:100%; object-fit:cover; object-position:center 55%; opacity:0.9;}
+  .hero::after{content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,14,8,0.1) 0%, rgba(20,14,8,0.15) 32%, rgba(20,14,8,0.88) 100%);}
+  .hero-content{position:absolute; left:0; right:0; bottom:0; padding:0 24px 52px; color:var(--cream); z-index:2;}
+  .hero-eyebrow{font-family:'Newsreader', serif; font-style:italic; font-size:1.05rem; color:#E7D9BE; margin-bottom:10px;}
+  .hero h1{color:#FBF6EC; font-size:clamp(2.2rem, 5.8vw, 3.8rem); line-height:1.08; max-width:820px; letter-spacing:-0.01em;}
+  .hero-sub{max-width:540px; margin-top:18px; color:#E9DFC9; font-size:1.02rem;}
+  .hero-credit{position:absolute; right:24px; bottom:16px; font-size:0.72rem; color:rgba(250,243,231,0.55); z-index:2;}
+
+  section{padding:88px 0;}
+  section.tight{padding:56px 0;}
+
+  .kicker{font-family:'Newsreader', serif; font-style:italic; color:var(--ink-soft); font-size:1rem; margin-bottom:10px;}
+  h2.section-title{font-size:clamp(1.7rem, 3.6vw, 2.5rem); line-height:1.15; max-width:620px; letter-spacing:-0.01em;}
+  .lede{font-family:'Newsreader', serif; font-size:1.28rem; line-height:1.55; color:var(--ink); max-width:640px;}
+  .rule{border:none; border-top:1px solid var(--rule); margin:0;}
+
+  /* ---------- INTRO ---------- */
+  .intro-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:start;}
+  .intro-num{font-family:'Newsreader', serif; font-size:0.95rem; color:var(--ink-soft); border-top:1px solid var(--rule); padding-top:14px; margin-top:26px;}
+  @media (max-width:760px){.intro-grid{grid-template-columns:1fr; gap:24px;}}
+
+  /* ---------- DEFINE (meal) SECTIONS ---------- */
+  .define{display:grid; grid-template-columns:1fr 1fr; align-items:center;}
+  .define .photo{height:100%; min-height:440px; overflow:hidden; position:relative;}
+  .define .photo img{width:100%; height:100%; object-fit:cover;}
+  .define .photo .cap{position:absolute; left:18px; bottom:14px; font-size:0.7rem; color:rgba(255,255,255,0.75); text-shadow:0 1px 3px rgba(0,0,0,0.5);}
+  .define .text{padding:56px 48px;}
+  .define.reverse .photo{order:2;}
+  .define.reverse .text{order:1;}
+
+  .define.m1 .text{background:var(--morning-soft);}
+  .define.m2 .text{background:var(--midday-soft);}
+  .define.m3 .text{background:var(--afternoon-soft);}
+  .define.m4 .text{background:var(--evening-soft);}
+
+  .tag{display:inline-block; font-family:'Newsreader', serif; font-style:italic; font-size:0.95rem; padding-bottom:4px; margin-bottom:16px; border-bottom:1px solid currentColor;}
+  .m1 .tag{color:var(--morning);}
+  .m2 .tag{color:var(--midday);}
+  .m3 .tag{color:var(--afternoon);}
+  .m4 .tag{color:var(--evening);}
+
+  .define h3{font-size:1.65rem; margin-bottom:16px; line-height:1.2;}
+  .define .text p{color:var(--ink-soft); max-width:420px;}
+  .define .time{font-size:0.82rem; color:var(--ink-soft); margin-bottom:6px; letter-spacing:0.01em;}
+
+  @media (max-width:820px){
+    .define{grid-template-columns:1fr;}
+    .define .photo{order:1; min-height:300px;}
+    .define .text{order:2; padding:40px 28px;}
+  }
+
+  /* ---------- THREE-WAY COMPARISON ---------- */
+  .versus{background:var(--ink); color:var(--cream);}
+  .versus .kicker{color:#C7B79A;}
+  .versus h2.section-title{color:#FBF6EC; max-width:660px;}
+  .versus .lede{color:#D8CBB2;}
+
+  .cmp-head{display:grid; grid-template-columns:1.1fr 1fr 1fr 1fr; margin-top:56px; padding-bottom:16px; border-bottom:1px solid rgba(250,243,231,0.18); align-items:end;}
+  .cmp-head div{font-family:'Newsreader', serif; font-size:1.15rem;}
+  .cmp-head .c3{color:#E9C98A;}
+  .cmp-head .c4{color:#9FD1A6; text-align:center;}
+  .cmp-head .c6{color:#D8A0B9; text-align:right;}
+
+  .cmp-row{display:grid; grid-template-columns:1.1fr 1fr 1fr 1fr; padding:20px 0; border-bottom:1px solid rgba(250,243,231,0.1); font-size:0.92rem; align-items:start;}
+  .cmp-row .label{color:rgba(250,243,231,0.5); font-size:0.82rem;}
+  .cmp-row .c4{text-align:center; color:#EDE4D2;}
+  .cmp-row .c3{color:#EDE4D2;}
+  .cmp-row .c6{text-align:right; color:#EDE4D2;}
+
+  @media (max-width:700px){
+    .cmp-head, .cmp-row{grid-template-columns:1fr;}
+    .cmp-head .c4, .cmp-head .c6, .cmp-row .c4, .cmp-row .c6{text-align:left;}
+    .cmp-row > div{padding:3px 0;}
+  }
+
+  /* ---------- TIMELINE (sample day) ---------- */
+  .timeline{background:var(--cream);}
+  .tl-list{margin-top:48px; border-top:1px solid var(--rule);}
+  .tl-row{display:grid; grid-template-columns:120px 3px 1fr; gap:24px; padding:28px 0; border-bottom:1px solid var(--rule); align-items:start;}
+  .tl-time{font-family:'Newsreader', serif; font-size:1.1rem; padding-top:2px;}
+  .tl-bar{align-self:stretch; border-radius:2px;}
+  .tl-row.m1 .tl-bar{background:var(--morning);} .tl-row.m1 .tl-time{color:var(--morning);}
+  .tl-row.m2 .tl-bar{background:var(--midday);} .tl-row.m2 .tl-time{color:var(--midday);}
+  .tl-row.m3 .tl-bar{background:var(--afternoon);} .tl-row.m3 .tl-time{color:var(--afternoon);}
+  .tl-row.m4 .tl-bar{background:var(--evening);} .tl-row.m4 .tl-time{color:var(--evening);}
+  .tl-row h4{font-family:'Newsreader', serif; font-weight:500; font-size:1.2rem; margin-bottom:6px;}
+  .tl-row p{color:var(--ink-soft); font-size:0.95rem; max-width:480px;}
+  @media (max-width:600px){.tl-row{grid-template-columns:70px 3px 1fr;}}
+
+  /* ---------- BENEFITS / WATCHOUTS ---------- */
+  .benefits{background:var(--sand);}
+  .risk-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:44px;}
+  .risk-card{background:var(--cream); padding:26px 24px; border-left:3px solid var(--midday);}
+  .risk-card.watch{border-left-color:var(--afternoon);}
+  .risk-card h4{font-family:'Newsreader', serif; font-size:1.1rem; margin-bottom:8px; font-weight:500;}
+  .risk-card p{font-size:0.92rem; color:var(--ink-soft);}
+  @media (max-width:760px){.risk-grid{grid-template-columns:1fr;}}
+
+  /* ---------- FIT / NOT FIT ---------- */
+  .fit{background:var(--evening); color:var(--cream);}
+  .fit .kicker{color:#B7C0D9;}
+  .fit h2.section-title{color:#FBF6EC;}
+  .fit .lede{color:#D6DCEA;}
+  .fit-cols{display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:48px; border-top:1px solid rgba(250,243,231,0.18);}
+  .fit-col{padding:36px 40px;}
+  .fit-col.yes{border-right:1px solid rgba(250,243,231,0.18);}
+  .fit-col h3{font-size:1.25rem; margin-bottom:18px; color:#FBF6EC;}
+  .fit-item{padding:12px 0; border-top:1px solid rgba(250,243,231,0.12); font-size:0.95rem; color:#DCE1EE;}
+  .fit-item:first-of-type{border-top:none;}
+  @media (max-width:760px){.fit-cols{grid-template-columns:1fr;} .fit-col.yes{border-right:none; border-bottom:1px solid rgba(250,243,231,0.18);}}
+
+  /* ---------- VERDICT ---------- */
+  .verdict{background:var(--cream);}
+  .verdict-quote{font-family:'Newsreader', serif; font-style:italic; font-size:clamp(1.4rem, 2.6vw, 1.9rem); line-height:1.4; color:var(--ink); max-width:660px; margin-top:8px;}
+
+  .band{height:320px; position:relative; overflow:hidden;}
+  .band img{width:100%; height:100%; object-fit:cover;}
+  .band .cap{position:absolute; left:24px; bottom:14px; font-size:0.72rem; color:rgba(255,255,255,0.75); text-shadow:0 1px 3px rgba(0,0,0,0.5);}
+
+  footer{background:var(--ink); color:#B9AD97; padding:48px 0 36px; font-size:0.85rem;}
+  footer .wrap{display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;}
+
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="https://images.unsplash.com/photo-1569420077790-afb136b3bb8c?w=1800&q=80&auto=format&fit=crop" alt="Four portioned meal bowls laid out in a row, filled with different combinations of food">
+    <div class="hero-content">
+      <div class="hero-eyebrow">A closer look at meal timing</div>
+      <h1>Four Meals a Day</h1>
+      <p class="hero-sub">Not three, not six — four. Breakfast, lunch, an afternoon meal, and dinner, spaced through the day on purpose. Here's what that rhythm actually does, and whether it's worth switching to.</p>
+    </div>
+    <div class="hero-credit">Photo: S'well / Unsplash</div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="wrap">
+      <div class="intro-grid">
+        <div>
+          <p class="kicker">Before the schedule</p>
+          <p class="lede">How many times you eat in a day changes more than your hunger. It shapes your energy, your portion sizes, and how easy the whole day feels to manage.</p>
+        </div>
+        <div>
+          <p>The four-meal pattern splits the day into breakfast, lunch, a proper afternoon meal — not a stray biscuit, an actual small plate — and dinner. It sits between the classic three-meal structure and the tighter five-or-six-meal grazing plans some athletes and dieters use.</p>
+          <div class="intro-num">Reading time: about 8 minutes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- MEAL 1: BREAKFAST -->
+  <div class="define m1">
+    <div class="photo">
+      <img src="https://images.unsplash.com/photo-1544926206-bd2c1e248045?w=1200&q=80&auto=format&fit=crop" alt="Toasted bread with a sunny-side-up egg and avocado on a white plate">
+      <div class="cap">Photo: Tim Chow / Unsplash</div>
+    </div>
+    <div class="text">
+      <div class="time">Meal one · Morning</div>
+      <span class="tag">Breakfast</span>
+      <h3>The meal that sets the pace</h3>
+      <p>Whatever you eat first tends to decide how the next few hours feel. A breakfast with real protein and some fat — eggs, yoghurt, nut butter — keeps hunger flat until lunch. A breakfast of only sugar and refined carbs does the opposite: a spike, then a crash by mid-morning.</p>
+      <p>It doesn't need to be large. It needs to be deliberate — something eaten sitting down, not grabbed on the way out the door.</p>
+    </div>
+  </div>
+
+  <!-- MEAL 2: LUNCH -->
+  <div class="define m2 reverse">
+    <div class="photo">
+      <img src="https://images.unsplash.com/photo-1742281257707-0c7f7e5ca9c6?w=1200&q=80&auto=format&fit=crop" alt="A traditional South Indian vegetarian thali with rice and several small dishes">
+      <div class="cap">Photo: Zoshua Colah / Unsplash</div>
+    </div>
+    <div class="text">
+      <div class="time">Meal two · Midday</div>
+      <span class="tag">Lunch</span>
+      <h3>The main event, not an afterthought</h3>
+      <p>In the four-meal structure, lunch carries the most weight — the biggest plate of the day, eaten when your body is most active and best able to use the energy. Rice or roti, dal, vegetables, some protein: a full, unhurried plate rather than a rushed desk sandwich.</p>
+      <p>Eating your largest meal here, rather than at night, is one of the simplest changes this pattern makes.</p>
+    </div>
+  </div>
+
+  <!-- MEAL 3: AFTERNOON MEAL -->
+  <div class="define m3">
+    <div class="photo">
+      <img src="https://images.unsplash.com/photo-1682622110332-d50f50b7146d?w=1200&q=80&auto=format&fit=crop" alt="A bowl of oats topped with fresh fruit and nuts">
+      <div class="cap">Photo: Alex Bayev / Unsplash</div>
+    </div>
+    <div class="text">
+      <div class="time">Meal three · Afternoon</div>
+      <span class="tag">The afternoon meal</span>
+      <h3>The one people usually skip — and shouldn't</h3>
+      <p>This is what separates a four-meal day from a three-meal one. A small, real plate around 4 or 5pm — fruit and nuts, roasted chana, a boiled egg, a bowl of yoghurt — closes the long gap between lunch and dinner that otherwise ends in vending-machine chips or a second helping at dinner out of pure hunger.</p>
+      <p>It works because it's planned. An unplanned snack is usually whatever's closest; a planned one is usually better food.</p>
+    </div>
+  </div>
+
+  <!-- MEAL 4: DINNER -->
+  <div class="define m4 reverse">
+    <div class="photo">
+      <img src="https://images.unsplash.com/photo-1576089073624-b5751a8f4de9?w=1200&q=80&auto=format&fit=crop" alt="A family sitting together and eating a meal at the dinner table">
+      <div class="cap">Photo: National Cancer Institute / Unsplash</div>
+    </div>
+    <div class="text">
+      <div class="time">Meal four · Evening</div>
+      <span class="tag">Dinner</span>
+      <h3>Lighter, earlier, calmer</h3>
+      <p>Because the afternoon meal already took the edge off hunger, dinner in this pattern is usually smaller and earlier than it would otherwise be — closer to sunset than to bedtime. A lighter dinner tends to mean better sleep and less of the heavy, sluggish feeling that follows a big late meal.</p>
+      <p>It's also, often, the one meal of the day eaten with other people — which matters for reasons that have nothing to do with nutrition.</p>
+    </div>
+  </div>
+
+  <!-- COMPARISON: 3 vs 4 vs 6 -->
+  <section class="versus">
+    <div class="wrap-wide">
+      <p class="kicker">Where four sits</p>
+      <h2 class="section-title">Three meals, four meals, or six — how they compare</h2>
+      <p class="lede" style="margin-top:14px;">Frequency isn't a magic number. It's a trade-off between hunger control and how much planning you're willing to do.</p>
+
+      <div class="cmp-head">
+        <div>&nbsp;</div>
+        <div class="c3">Three meals</div>
+        <div class="c4">Four meals</div>
+        <div class="c6">Six meals</div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="label">Hunger between meals</div>
+        <div class="c3">Long gaps, especially afternoon to dinner.</div>
+        <div class="c4">Gaps are short enough that hunger rarely gets sharp.</div>
+        <div class="c6">Barely hungry at any point — sometimes not hungry enough to eat well.</div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="label">Planning required</div>
+        <div class="c3">Low — just three sittings to think about.</div>
+        <div class="c4">Moderate — one extra plate to plan and pack.</div>
+        <div class="c6">High — nearly every waking hour involves food.</div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="label">Risk of overeating</div>
+        <div class="c3">Higher at dinner, from arriving too hungry.</div>
+        <div class="c4">Lower — the afternoon meal prevents the big evening hunger spike.</div>
+        <div class="c6">Low per meal, but easy to lose track of the daily total.</div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="label">Fits a normal workday</div>
+        <div class="c3">Easily — matches most office and school schedules.</div>
+        <div class="c4">Easily — one extra short break covers it.</div>
+        <div class="c6">Awkwardly — needs food on hand almost constantly.</div>
+      </div>
+
+      <div class="cmp-row">
+        <div class="label">Best suited to</div>
+        <div class="c3">People with steady appetites and no long gaps between meals.</div>
+        <div class="c4">Most people with a long midday-to-evening stretch and an active daily routine.</div>
+        <div class="c6">Athletes in heavy training, or specific medical eating plans.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE DAY TIMELINE -->
+  <section class="timeline">
+    <div class="wrap">
+      <p class="kicker">Put it on a clock</p>
+      <h2 class="section-title">What a four-meal day can look like</h2>
+      <p class="lede" style="margin-top:14px;">Not a strict prescription — a starting shape to adjust around your own routine.</p>
+
+      <div class="tl-list">
+        <div class="tl-row m1">
+          <div class="tl-time">7:30 AM</div>
+          <div class="tl-bar"></div>
+          <div>
+            <h4>Breakfast</h4>
+            <p>Eggs or paneer, a piece of fruit, and tea or coffee. Enough protein to hold steady until early afternoon.</p>
+          </div>
+        </div>
+        <div class="tl-row m2">
+          <div class="tl-time">1:00 PM</div>
+          <div class="tl-bar"></div>
+          <div>
+            <h4>Lunch</h4>
+            <p>The largest plate of the day — grains, dal or a protein, and at least one vegetable side, eaten away from the desk if possible.</p>
+          </div>
+        </div>
+        <div class="tl-row m3">
+          <div class="tl-time">4:30 PM</div>
+          <div class="tl-bar"></div>
+          <div>
+            <h4>Afternoon meal</h4>
+            <p>Fruit, roasted nuts or chana, and tea. Small, but eaten sitting down, not standing over a desk.</p>
+          </div>
+        </div>
+        <div class="tl-row m4">
+          <div class="tl-time">7:30 PM</div>
+          <div class="tl-bar"></div>
+          <div>
+            <h4>Dinner</h4>
+            <p>Lighter than lunch — soup, a small grain portion, and vegetables — finished at least two hours before bed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <img src="https://images.unsplash.com/photo-1557844352-761f2565b576?w=1600&q=75&auto=format&fit=crop" alt="Fresh green vegetables at a market">
+    <div class="cap">Photo: Iñigo De la Maza / Unsplash</div>
+  </div>
+
+  <!-- BENEFITS / WATCHOUTS -->
+  <section class="benefits">
+    <div class="wrap-wide">
+      <p class="kicker">The honest balance sheet</p>
+      <h2 class="section-title">What it helps with, and what to watch</h2>
+
+      <div class="risk-grid">
+        <div class="risk-card">
+          <h4>Steadier blood sugar</h4>
+          <p>Shorter gaps between meals mean fewer sharp dips and spikes — useful for energy and for concentration through the afternoon.</p>
+        </div>
+        <div class="risk-card">
+          <h4>Smaller, calmer dinners</h4>
+          <p>Because the afternoon meal takes the edge off, dinner stops being the meal you attack out of pure hunger.</p>
+        </div>
+        <div class="risk-card">
+          <h4>Less impulsive snacking</h4>
+          <p>A planned afternoon plate crowds out the unplanned trip to the vending machine or the biscuit tin.</p>
+        </div>
+        <div class="risk-card watch">
+          <h4>The fourth meal has to be real food</h4>
+          <p>If the afternoon meal turns into a packet of chips, the whole benefit disappears — it becomes a fourth chance to eat poorly, not a better-timed one.</p>
+        </div>
+        <div class="risk-card watch">
+          <h4>Total intake still matters</h4>
+          <p>Four meals isn't a licence to eat more overall. Spread the same daily amount across four sittings, don't add a full extra meal's worth of food.</p>
+        </div>
+        <div class="risk-card watch">
+          <h4>It needs a bit more planning</h4>
+          <p>An extra meal means an extra thing to pack or prepare — the pattern quietly fails for people who can't plan for it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT SUITS -->
+  <section class="fit">
+    <div class="wrap-wide">
+      <p class="kicker">Not universal</p>
+      <h2 class="section-title">Who this pattern actually suits</h2>
+
+      <div class="fit-cols">
+        <div class="fit-col yes">
+          <h3>Probably a good fit</h3>
+          <div class="fit-item">People with a long stretch — six hours or more — between lunch and dinner.</div>
+          <div class="fit-item">Anyone who currently arrives at dinner overly hungry and overeats as a result.</div>
+          <div class="fit-item">People trying to manage energy dips in the late afternoon.</div>
+          <div class="fit-item">Households that can prepare or pack one extra small meal without much extra effort.</div>
+        </div>
+        <div class="fit-col">
+          <h3>Worth reconsidering</h3>
+          <div class="fit-item">People who genuinely aren't hungry more than three times a day — forcing a fourth meal helps no one.</div>
+          <div class="fit-item">Very tight or unpredictable schedules where a fourth sitting just won't happen consistently.</div>
+          <div class="fit-item">Anyone managing a medical condition where meal timing is already prescribed by a doctor.</div>
+          <div class="fit-item">People prone to treating "extra meal" as licence for extra snacking, not a replacement for it.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERDICT -->
+  <section class="verdict">
+    <div class="wrap">
+      <p class="kicker">Where this leaves us</p>
+      <h2 class="section-title">A rhythm, not a rule</h2>
+      <p class="verdict-quote">Four meals a day isn't a diet — it's a spacing decision. For most people with a long afternoon stretch, it trades one large, hurried dinner for a calmer day with fewer hunger spikes. It only works, though, if that fourth meal stays real food eaten on purpose, not an extra excuse to snack.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap-wide">
+      <div>Four Meals a Day — an informational read.</div>
+      <div>Photos via Unsplash, used under the Unsplash License.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
